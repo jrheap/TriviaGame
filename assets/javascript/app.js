@@ -24,7 +24,7 @@ console.log("test")
 // 9. What city do they Protect?
 // 10. What is their favorite food?
 
-var questions = [{
+var quiz = [{
     question: "What kind of animal is their sensi",
     options: ["A Rat", "A Mouse", "A Ferret", "A Rabbit"],
     correctAnswer: "A Rat",
@@ -71,7 +71,90 @@ var questions = [{
 },
 {
     question: "Where do the Turtles Live?",
-    options: ["Above Pizza Hut", "Abandoned Subway", "The Roof Tops", "The Swamp"],
-    correctAnswer: "The Swamp",
+    options: ["Above Pizza Hut", "Abandoned Subway", "The Roof Tops", "The Sewer"],
+    correctAnswer: "The Sewer",
 }
-]
+];
+
+console.log(quiz.length)
+
+// create all global variables
+var currentQuestion = 0;
+var timerCount = 10;
+var timerId;
+var correct = 0;
+var wrong = 0;
+
+
+// populate buttons and make sure the bottons work the buttons works
+
+function generateQuestion() {
+    if (currentQuestion < quiz.length-1){
+        $(`#questionsRow`).empty();
+        var question = $(`
+        <div class="col-md-12 container">
+            <h1>${quiz[currentQuestion].question}</h1>
+            <button id= "option">${quiz[currentQuestion].options[0]}</button>
+            <button id= "option">${quiz[currentQuestion].options[1]}</button>
+            <button id= "option">${quiz[currentQuestion].options[2]}</button>
+            <button id= "option">${quiz[currentQuestion].options[3]}</button>
+        </div>
+        
+        
+        `)
+        console.log(quiz)
+        $(`#questionsRow`).append(question);
+    }
+}
+generateQuestion();
+
+//need a way to tell what button was clicked on
+  //event listener .on("click")
+  //we need a unique identifier to click on
+  //we need to get the value of what was clicked on
+  //see if it was correct
+  //loop over each option and see if it was right
+  //alsert right answer and say if it was correct or not
+  //wait a few seconds and go to next answer
+  $("#questionsRow").on("click", `#option`, function() {
+      console.log($(this).text());
+      if (currentQuestion < quiz.length){
+        //   I do not understand this (below)
+        var userGuess = $(this).text().trim();
+        console.log(userGuess)
+            if (userGuess == quiz[currentQuestion].correctAnswer){
+            alert("Correct");
+            currentQuestion++;
+            generateQuestion();
+    }else{
+        alert("YOU'R WRONG, the Correct answer is " + quiz[currentQuestion].correctAnswer )
+        currentQuestion++
+        generateQuestion();
+    }
+      
+  }})
+
+
+  
+  function startTimer (){
+    timerId = setInterval(timer, 1000);
+  }
+  
+  function timer() {
+    timerCount--;
+    $('#timer').text(timerCount)
+    if(timerCount == 0){
+      timerCount = 10;
+      clearInterval(timerId)
+      alert('Times Up the Answer was: ' + quiz[currentQuestion].correctAnswer)
+      currentQuestion++
+       generateQuestion()
+       startTimer()
+    }
+  }
+
+  function endGame() {
+      if (currentQuestion = )
+  }
+  
+ 
