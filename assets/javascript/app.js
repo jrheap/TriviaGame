@@ -25,9 +25,9 @@ console.log("test")
 // 10. What is their favorite food?
 
 var quiz = [{
-    question: "What kind of animal is their sensi",
-    options: ["A Rat", "A Mouse", "A Ferret", "A Rabbit"],
-    correctAnswer: "A Rat",
+    question: "What kind of animal is their Sensei?",
+    options: ["Rat", "Mouse", "Ferret", "Rabbit"],
+    correctAnswer: "Rat",
 },
 {
     question: "Which Brother wears the Blue bandana?",
@@ -35,32 +35,32 @@ var quiz = [{
     correctAnswer: "Leonardo",
 },
 {
-    question: "Which Brother wears the Red bandana",
+    question: "Which Brother wears the Red bandana?",
     options: ["Leonardo","Michaelangelo", "Donatello", "Raphael"],
     correctAnswer: "Raphael",
 },
 {
-    question: "Which Brother wears the Purple bandana",
+    question: "Which Brother wears the Purple bandana?",
     options: ["Raphael", "Leonardo","Michaelangelo", "Donatello" ],
     correctAnswer: "Donatello",
 },
 {   
-    question: "Which Brother wears the Orange bandana",
+    question: "Which Brother wears the Orange bandana?",
     options: ["Leonardo","Michaelangelo", "Donatello", "Raphael"],
     correctAnswer: "Michaelangelo",
 },
 {
-    question: "What is the name of their Arch nemesis",
+    question: "What is the name of their Arch nemesis?",
     options: ["Splinter", "Shrek", "Elias", "Shredder"],
     correctAnswer: "Shredder",
 },
 {
-    question: "Shredder is the leader of the  ____ clan",
+    question: "Shredder is the leader of the  ____ clan?",
     options: ["Hand", "Head", "Foot", "Toe"],
     correctAnswer: "Shredder", 
 },
 {
-    question: "The brothers are named after Famouse ____",
+    question: "The brothers are named after Famous ____?",
     options: ["Actors", "Artists", "War Captains", "Authors"],
     correctAnswer: "Artists",
 },
@@ -71,7 +71,7 @@ var quiz = [{
 },
 {
     question: "Where do the Turtles Live?",
-    options: ["Above Pizza Hut", "Abandoned Subway", "The Roof Tops", "The Sewer"],
+    options: ["Pizza Hut", " The Subway", "Old Church", "The Sewer"],
     correctAnswer: "The Sewer",
 }
 ];
@@ -84,23 +84,26 @@ var timerCount = 10;
 var timerId;
 var correct = 0;
 var wrong = 0;
+var answer = 0;
 
 
 // populate buttons and make sure the bottons work the buttons works
 
 function generateQuestion() {
-    if (currentQuestion < quiz.length-1){
+    if (currentQuestion < quiz.length){
         $(`#questionsRow`).empty();
         var question = $(`
-        <div class="col-md-12 container">
+        <div class="col-md-5 container"></div>
+        <div class="col-md-7 container">
             <h1>${quiz[currentQuestion].question}</h1>
+        </div>
+        <div class="col-md-6 container"></div>
+        <div class="col-md-6 container">
             <button id= "option">${quiz[currentQuestion].options[0]}</button>
             <button id= "option">${quiz[currentQuestion].options[1]}</button>
             <button id= "option">${quiz[currentQuestion].options[2]}</button>
             <button id= "option">${quiz[currentQuestion].options[3]}</button>
-        </div>
-        
-        
+        </Div>
         `)
         console.log(quiz)
         $(`#questionsRow`).append(question);
@@ -119,42 +122,56 @@ generateQuestion();
   $("#questionsRow").on("click", `#option`, function() {
       console.log($(this).text());
       if (currentQuestion < quiz.length){
-        //   I do not understand this (below)
+
         var userGuess = $(this).text().trim();
         console.log(userGuess)
             if (userGuess == quiz[currentQuestion].correctAnswer){
             alert("Correct");
+            timerCount = 10;
+            correct++
+            clearInterval(timerId)
             currentQuestion++;
             generateQuestion();
+            startTimer()
     }else{
-        alert("YOU'R WRONG, the Correct answer is " + quiz[currentQuestion].correctAnswer )
+        alert("YOU'R WRONG, the Correct answer is " + quiz[currentQuestion].correctAnswer);
+        timerCount = 10;
         currentQuestion++
+        wrong++
+        console.log(wrong)
+        clearInterval(timerId)
         generateQuestion();
-    }
+        startTimer()
+    } }else{
+        clearInterval(timerId)
+        alert("game over")
+        alert("Wrong: " + wrong   + "Correct: " + correct);
+        
+
+     }
       
-  }})
+  })
 
 
   
-  function startTimer (){
-    timerId = setInterval(timer, 1000);
-  }
+//   function startTimer (){
+//     timerId = setInterval(timer, 1000);
+//   }
   
   function timer() {
     timerCount--;
-    $('#timer').text(timerCount)
+    $("#timer").text(timerCount)
     if(timerCount == 0){
       timerCount = 10;
-      clearInterval(timerId)
-      alert('Times Up the Answer was: ' + quiz[currentQuestion].correctAnswer)
-      currentQuestion++
+       clearInterval(timerId)
+       alert('Times Up the Answer was: ' + quiz[currentQuestion].correctAnswer)
+       currentQuestion++
        generateQuestion()
        startTimer()
     }
   }
+startTimer();
 
-  function endGame() {
-      if (currentQuestion = )
-  }
+;
   
  

@@ -1,6 +1,62 @@
-.body  {
-    background-color: silver;
-}
+body{
+    background-image: url("..//image/turtle1.jpg");
+    background-size: 100%;
+    color: black;  
+ }
 .container {
-    background-color: antiquewhite;
+    
+}
+h1{
+    font-size: 70px;
+    font-family: 'Kaushan Script', cursive;
+    text-align: center;
+    font-weight: 100;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    color: purple
+};
+span.timer{
+    font-size: 150px;
+}
+.display-4 {
+    font-size: 7.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+.row{
+    font-size: 25px;
+}
+#hero{
+    font-size:20 px;
+    text-align: center;
+
+}
+#leo{
+    font-family: 'Kaushan Script', cursive;
+    font-size: 7.5rem;
+    font-weight: 300;
+    color: rgb(65, 102, 175);
+}
+.button{}
+    
+#option{
+    text-align: center;
+    padding: 14px 14px 14px 14px;
+    margin-top: 14px;
+    border-radius: 20%;
+    background-color: darkorange;
+    margin-left: 35px;
+    border: none;
+    color: antiquewhite;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    cursor: pointer;
+    font-family: 'Kaushan Script', cursive;
+    
+
+}
+#option:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
