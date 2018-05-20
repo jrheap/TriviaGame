@@ -154,9 +154,9 @@ generateQuestion();
 
 
   
-//   function startTimer (){
-//     timerId = setInterval(timer, 1000);
-//   }
+  function startTimer (){
+    timerId = setInterval(timer, 1000);
+  }
   
   function timer() {
     timerCount--;
