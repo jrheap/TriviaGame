@@ -60,3 +60,28 @@ span.timer{
 #option:hover{
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
+
+h3{
+    font-size: 50px;
+    font-family: 'Kaushan Script', cursive;
+    text-align: center;
+    font-weight: 100;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-left: 550px;
+    color: rgb(65, 102, 175);
+
+};
+p{
+    font-size: 50px;
+    font-family: 'Kaushan Script', cursive;
+    text-align: center;
+    font-weight: 100;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-left: 550px; 
+    color: red
+};
+#wrong{
+    color: red  
+}

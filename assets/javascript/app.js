@@ -57,7 +57,7 @@ var quiz = [{
 {
     question: "Shredder is the leader of the  ____ clan?",
     options: ["Hand", "Head", "Foot", "Toe"],
-    correctAnswer: "Shredder", 
+    correctAnswer: "Foot", 
 },
 {
     question: "The brothers are named after Famous ____?",
@@ -91,7 +91,7 @@ var answer = 0;
 
 function generateQuestion() {
     if (currentQuestion < quiz.length){
-        $(`#questionsRow`).empty();
+        newFunction();
         var question = $(`
         <div class="col-md-5 container"></div>
         <div class="col-md-7 container">
@@ -103,14 +103,31 @@ function generateQuestion() {
             <button id= "option">${quiz[currentQuestion].options[1]}</button>
             <button id= "option">${quiz[currentQuestion].options[2]}</button>
             <button id= "option">${quiz[currentQuestion].options[3]}</button>
-        </Div>
+        </div>
+        <div class="col-md-6 container">
+            <h3 id="correctScore"> Correct: ${correct}</h3>
+            <h3 id="wrong"> Wrong: ${wrong}</h3>
+        </div>
         `)
         console.log(quiz)
         $(`#questionsRow`).append(question);
+
+        
     }
 }
 generateQuestion();
-
+function stop() {
+    if (currentQuestion === quiz.length){
+        console.log("THIS IS WORKING")
+        clearInterval(timerId)
+        alert("Game Over! Wrong: " + wrong   + "  Correct: " + correct)
+        newFunction()
+        $(`#questionsRow`).html(`
+        <div class="col-md-5 container">
+        <h1>Click refresh to start over </h1></div> 
+        `)
+    }
+}
 //need a way to tell what button was clicked on
   //event listener .on("click")
   //we need a unique identifier to click on
@@ -129,31 +146,32 @@ generateQuestion();
             alert("Correct");
             timerCount = 10;
             correct++
+            console.log(correct+ " Correct")
             clearInterval(timerId)
             currentQuestion++;
             generateQuestion();
             startTimer()
     }else{
-        alert("YOU'R WRONG, the Correct answer is " + quiz[currentQuestion].correctAnswer);
+        alert("YOU'R WRONG, the Correct answer is   " + quiz[currentQuestion].correctAnswer);
         timerCount = 10;
         currentQuestion++
         wrong++
-        console.log(wrong)
+        console.log(wrong + " wrong")
         clearInterval(timerId)
         generateQuestion();
         startTimer()
-    } }else{
-        clearInterval(timerId)
-        alert("game over")
-        alert("Wrong: " + wrong   + "Correct: " + correct);
-        
-
-     }
+        stop()
+        console.log(currentQuestion + "__________________________")
+    } }
       
   })
 
 
   
+function newFunction() {
+    $(`#questionsRow`).empty();
+}
+
   function startTimer (){
     timerId = setInterval(timer, 1000);
   }
@@ -172,6 +190,10 @@ generateQuestion();
   }
 startTimer();
 
-;
+function popUp(){
+var module = $(
+
+)
+} 
   
  
